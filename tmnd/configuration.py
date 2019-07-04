@@ -5,14 +5,14 @@ from clint import resources
 from slugify import slugify
 import docker
 
-from tmn import display
-from tmn.elements.network import Network
-from tmn.elements.service import Service
-from tmn.elements.volume import Volume
-from tmn.environments import environments
+from tmnd import display
+from tmnd.elements.network import Network
+from tmnd.elements.service import Service
+from tmnd.elements.volume import Volume
+from tmnd.environments import environments
 
-logger = logging.getLogger('tmn')
-resources.init('tomochain', 'tmn')
+logger = logging.getLogger('tmnd')
+resources.init('tomochain', 'tmnd')
 
 
 class Configuration:
@@ -71,8 +71,8 @@ class Configuration:
         resources.user.write('api', self.api)
 
     def _compose(self) -> None:
-        self.networks['tmn'] = Network(
-            name='{}_tmn'.format(self.name),
+        self.networks['tmnd'] = Network(
+            name='bridge'.format(self.name),
             client=self.client
         )
         self.volumes['chaindata'] = Volume(
@@ -95,7 +95,7 @@ class Configuration:
             image='tomochain/node:{}'.format(
                 'devnet' if tag == 'latest' else tag
             ),
-            network=self.networks['tmn'].name,
+            network=self.networks['tmnd'].name,
             environment={
                 'IDENTITY': '{}'.format(self.name),
                 'PRIVATE_KEY': '{}'.format(self.pkey)

@@ -3,16 +3,16 @@ import sys
 
 import click
 
-from tmn import display
-from tmn import __version__
-from tmn.configuration import Configuration
+from tmnd import display
+from tmnd import __version__
+from tmnd.configuration import Configuration
 
-logger = logging.getLogger('tmn')
+logger = logging.getLogger('tmnd')
 docker_url = None
 
 
-@click.group(help=('Tomo MasterNode (tmn) is a cli tool to help you run a Tomo'
-                   'chain masternode'))
+@click.group(help=('Tomo fullnode (tmnd) is a cli tool to help you run a Tomo'
+                   'chain fullnode'))
 @click.option('--debug', is_flag=True, help='Enable debug mode')
 @click.option('--docker', metavar='URL', help='Url to the docker server')
 @click.version_option(version=__version__)
@@ -31,22 +31,22 @@ def docs() -> None:
     display.link_docs()
 
 
-@click.command(help='Start your TomoChain masternode')
-@click.option('--name', metavar='NAME', help='Your masternode\'s name')
+@click.command(help='Start your TomoChain fullnode')
+@click.option('--name', metavar='NAME', help='Your fullnode\'s name')
 @click.option('--net', type=click.Choice(['mainnet', 'testnet', 'devnet']),
-              help='The environment your masternode will connect to')
+              help='The environment your fullnode will connect to')
 @click.option('--pkey', metavar='KEY', help=('Private key of the account your '
-                                             'masternode will collect rewards '
+                                             'fullnode will collect rewards '
                                              'on'))
 @click.option('--api', is_flag=True)
 def start(name: str, net: str, pkey: str, api: bool) -> None:
-    "Start the containers needed to run a masternode"
+    "Start the containers needed to run a fullnode"
     configuration = Configuration(name=name, net=net, pkey=pkey, start=True,
                                   docker_url=docker_url, api=api)
     if configuration.force_recreate:
         display.error_breaking_change()
         sys.exit('\n')
-    display.title_start_masternode(configuration.name)
+    display.title_start_fullnode(configuration.name)
     # volumes
     display.subtitle_create_volumes()
     for _, value in configuration.volumes.items():
@@ -85,14 +85,14 @@ def start(name: str, net: str, pkey: str, api: bool) -> None:
     display.newline()
 
 
-@click.command(help='Stop your TomoChain masternode')
+@click.command(help='Stop your TomoChain fullnode')
 def stop() -> None:
-    "Stop the masternode containers"
+    "Stop the fullnode containers"
     configuration = Configuration(docker_url=docker_url)
     if configuration.force_recreate:
         display.error_breaking_change()
         sys.exit('\n')
-    display.title_stop_masternode(configuration.name)
+    display.title_stop_fullnode(configuration.name)
     for _, service in configuration.services.items():
         display.step_stop_container(service.name)
         if service.stop():
@@ -102,14 +102,14 @@ def stop() -> None:
     display.newline()
 
 
-@click.command(help='Show the status of your TomoChain masternode')
+@click.command(help='Show the status of your TomoChain fullnode')
 def status() -> None:
-    "Show the status of the masternode containers"
+    "Show the status of the fullnode containers"
     configuration = Configuration(docker_url=docker_url)
     if configuration.force_recreate:
         display.error_breaking_change()
         sys.exit('\n')
-    display.title_status_masternode(configuration.name)
+    display.title_status_fullnode(configuration.name)
     for _, service in configuration.services.items():
         status = service.status()
         if status and status == 'absent':
@@ -137,14 +137,14 @@ def status() -> None:
     display.newline()
 
 
-@click.command(help='Show details about your TomoChain masternode')
+@click.command(help='Show details about your TomoChain fullnode')
 def inspect() -> None:
-    "Show details about the tomochain masternode"
+    "Show details about the tomochain fullnode"
     configuration = Configuration(docker_url=docker_url)
     if configuration.force_recreate:
         display.error_breaking_change()
         sys.exit('\n')
-    display.title_inspect_masternode(configuration.name)
+    display.title_inspect_fullnode(configuration.name)
     identity = configuration.services['tomochain'].execute(
         'echo $IDENTITY'
     ) or 'container not running'
@@ -162,14 +162,14 @@ def inspect() -> None:
     display.newline()
 
 
-@click.command(help='Update your masternode')
+@click.command(help='Update your fullnode')
 def update() -> None:
-    "Update the tomochain masternode with the lastest images"
+    "Update the tomochain fullnode with the lastest images"
     configuration = Configuration(docker_url=docker_url)
     if configuration.force_recreate:
         display.error_breaking_change()
         sys.exit('\n')
-    display.title_update_masternode(configuration.name)
+    display.title_update_fullnode(configuration.name)
     display.subtitle_remove_containers()
     # containers
     # stop
@@ -206,15 +206,15 @@ def update() -> None:
     display.newline()
 
 
-@click.command(help='Remove your TomoChain masternode')
+@click.command(help='Remove your TomoChain fullnode')
 @click.option('--confirm', is_flag=True)
 def remove(confirm: bool) -> None:
-    "Remove the masternode (containers, networks volumes)"
+    "Remove the fullnode (containers, networks volumes)"
     configuration = Configuration(docker_url=docker_url)
     if not confirm:
-        display.warning_remove_masternode(configuration.name)
+        display.warning_remove_fullnode(configuration.name)
         sys.exit('\n')
-    display.title_remove_masternode(configuration.name)
+    display.title_remove_fullnode(configuration.name)
     display.subtitle_remove_containers()
     # containers
     # stop

@@ -11,7 +11,7 @@ pastel.add_style('und', options=['underscore'])
 pastel.add_style('warning', 'yellow')
 pastel.add_style('error', 'red')
 
-help_url = 'https://docs.tomochain.com/masternode/tmn/'
+help_url = 'https://docs.tomochain.com/masternode/tmnd/'
 
 
 def newline(number: int = 1) -> None:
@@ -44,7 +44,7 @@ def link(msg: str, url: str) -> str:
 
 def link_docs() -> None:
     "Custom link message for documentation"
-    link('Documentation on running a masternode:', help_url)
+    link('Documentation on running a fullnode:', help_url)
 
 
 @style
@@ -55,34 +55,34 @@ def title(msg: str) -> str:
     )
 
 
-def title_start_masternode(name: str) -> None:
-    "Title when starting a masternode"
-    title('Starting masternode <hy>{}</hy>:'.format(name))
+def title_start_fullnode(name: str) -> None:
+    "Title when starting a fullnode"
+    title('Starting fullnode <hy>{}</hy>:'.format(name))
 
 
-def title_stop_masternode(name: str) -> None:
-    "Title when stopping a masternode"
-    title('Stopping masternode <hy>{}</hy>:'.format(name))
+def title_stop_fullnode(name: str) -> None:
+    "Title when stopping a fullnode"
+    title('Stopping fullnode <hy>{}</hy>:'.format(name))
 
 
-def title_status_masternode(name: str) -> None:
-    "Title when viewing a masternode status"
-    title('Masternode <hy>{}</hy> status:'.format(name))
+def title_status_fullnode(name: str) -> None:
+    "Title when viewing a fullnode status"
+    title('fullnode <hy>{}</hy> status:'.format(name))
 
 
-def title_inspect_masternode(name: str) -> None:
-    "Title when inspecting a masternode"
-    title('Masternode <hy>{}</hy> details:'.format(name))
+def title_inspect_fullnode(name: str) -> None:
+    "Title when inspecting a fullnode"
+    title('fullnode <hy>{}</hy> details:'.format(name))
 
 
-def title_update_masternode(name: str) -> None:
-    "Title when updating a masternode"
-    title('Updating masternode <hy>{}</hy>:'.format(name))
+def title_update_fullnode(name: str) -> None:
+    "Title when updating a fullnode"
+    title('Updating fullnode <hy>{}</hy>:'.format(name))
 
 
-def title_remove_masternode(name: str) -> None:
-    "Title when removing a masternode"
-    title('Removing masternode <hy>{}</hy>:'.format(name))
+def title_remove_fullnode(name: str) -> None:
+    "Title when removing a fullnode"
+    title('Removing fullnode <hy>{}</hy>:'.format(name))
 
 
 @style
@@ -133,12 +133,12 @@ def detail(msg, content: str, indent: int = 1) -> str:
 
 
 def detail_identity(content: str) -> None:
-    "Custom detail message for the masternode identity"
+    "Custom detail message for the fullnode identity"
     detail('Unique identity', content)
 
 
 def detail_coinbase(content: str) -> None:
-    "Custom detail message for the masternode coinbase address"
+    "Custom detail message for the fullnode coinbase address"
     detail('Coinbase address (account public key)', content)
 
 
@@ -263,18 +263,18 @@ def warning(msg: str, newline: bool = True) -> str:
 
 
 def warning_ignoring_start_options(name: str) -> None:
-    "Custom warning when tmn is ignoring the start options"
+    "Custom warning when tmnd is ignoring the start options"
     warning(
-        'masternode <hy>{}</hy> is already configured\n'.format(name)
+        'fullnode <hy>{}</hy> is already configured\n'.format(name)
         + '           '
         + 'ignoring start options\n'
     )
 
 
-def warning_remove_masternode(name: str) -> None:
-    "Custom warning when tmn is removing masternode but no confirmation"
+def warning_remove_fullnode(name: str) -> None:
+    "Custom warning when tmnd is removing fullnode but no confirmation"
     warning(
-        'you are about to remove masternode <hy>{}</hy>\n'.format(name)
+        'you are about to remove fullnode <hy>{}</hy>\n'.format(name)
         + '           '
         + 'this will permanently delete its data\n'
         + '           '
@@ -303,18 +303,18 @@ def error_docker_api() -> None:
 
 
 def error_start_not_initialized() -> None:
-    "Custom error when `tmn start` has never been used with `--name` option"
+    "Custom error when `tmnd start` has never been used with `--name` option"
     error(
-        'tmn doesn\'t manage any masternode yet\n'
+        'tmnd doesn\'t manage any fullnode yet\n'
         '         please use '
-        '<hy>tmn start --name</hy> to get started'
+        '<hy>tmnd start --name</hy> to get started'
     )
 
 
 def error_start_option_required(option: str) -> None:
-    "Custom error when `tmn start` is used with name but not the other options"
+    "Custom error when `tmnd start` is used with name but not the other options"
     error(
-        '<hy>{}</hy> is required when starting a new masternode'
+        '<hy>{}</hy> is required when starting a new fullnode'
         .format(option)
     )
 
@@ -334,9 +334,9 @@ def error_breaking_change() -> None:
         '         '
         'please recreate your node by deleting it\n'
         '         '
-        '<hy>tmn remove --confirm</hy>\n'
+        '<hy>tmnd remove --confirm</hy>\n'
         '         '
         'and creating it back with the same options as the old one\n'
         '         '
-        '<hy>tmn start --name ... --net ... --pkey ...</hy>'
+        '<hy>tmnd start --name ... --net ... --pkey ...</hy>'
     )
