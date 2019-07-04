@@ -13,7 +13,7 @@ install:
   - poetry install
 
 script:
-  - flake8 . # Test
+  # - flake8 .
   # - coverage run --source tmnd -m pytest -v
   # - coverage report
   # - coveralls
