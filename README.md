@@ -2,8 +2,8 @@
 
 | Branch  | Status | Coverage |
 | --- | --- | --- |
-| Master | [![Build Status](https://travis-ci.org/tomochain/tmnd.svg?branch=master)](https://travis-ci.org/tomochain/tmnd) | [![Coverage Status](https://coveralls.io/repos/github/tomochain/tmnd/badge.svg?branch=master)](https://coveralls.io/github/tomochain/tmnd?branch=master) |
-| Develop | [![Build Status](https://travis-ci.org/tomochain/tmnd.svg?branch=develop)](https://travis-ci.org/tomochain/tmnd) | [![Coverage Status](https://coveralls.io/repos/github/tomochain/tmnd/badge.svg?branch=develop)](https://coveralls.io/github/tomochain/tmnd?branch=develop) |
+| Master | [![Build Status](https://travis-ci.org/tomochain/tmnd.svg?branch=master)](https://travis-ci.org/naviat/tmnd) | [![Coverage Status](https://coveralls.io/repos/github/naviat/tmnd/badge.svg?branch=master)](https://coveralls.io/github/naviat/tmnd?branch=master) |
+| Develop | [![Build Status](https://travis-ci.org/naviat/tmnd.svg?branch=develop)](https://travis-ci.org/naviat/tmnd) | [![Coverage Status](https://coveralls.io/repos/github/naviat/tmnd/badge.svg?branch=develop)](https://coveralls.io/github/naviat/tmnd?branch=develop) |
 
 Tomo MasterNode (tmnd) is a cli tool to help you run a TomoChain masternode
 
