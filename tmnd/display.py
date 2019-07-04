@@ -312,7 +312,8 @@ def error_start_not_initialized() -> None:
 
 
 def error_start_option_required(option: str) -> None:
-    "Custom error when `tmnd start` is used with name but not the other options"
+    "Custom error when `tmnd start` is used with name \
+        but not the other options"
     error(
         '<hy>{}</hy> is required when starting a new fullnode'
         .format(option)
