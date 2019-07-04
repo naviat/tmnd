@@ -12,7 +12,7 @@ before_install:
 install:
   - poetry install
 
-script:
+#script:
   # - flake8 .
   # - coverage run --source tmnd -m pytest -v
   # - coverage report
