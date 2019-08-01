@@ -2,7 +2,7 @@
 
 | Branch  | Status | Coverage |
 | --- | --- | --- |
-| Master | [![Build Status](https://travis-ci.org/tomochain/tmnd.svg?branch=master)](https://travis-ci.org/naviat/tmnd) | [![Coverage Status](https://coveralls.io/repos/github/naviat/tmnd/badge.svg)](https://coveralls.io/github/naviat/tmnd) |
+| Master | [![Build Status](https://travis-ci.org/naviat/tmnd.svg?branch=master?branch=master)](https://travis-ci.org/naviat/tmnd) | [![Coverage Status](https://coveralls.io/repos/github/naviat/tmnd/badge.svg)](https://coveralls.io/github/naviat/tmnd) |
 
 Tomo Fullnode (tmnd) is a cli tool to help you run a TomoChain Fullnode
 
